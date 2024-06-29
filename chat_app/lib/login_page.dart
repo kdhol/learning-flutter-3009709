@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/utils/testfield_styles.dart';
+import 'package:flutter_learn/widgets/login_text_field.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -75,7 +75,7 @@ class LoginPage extends StatelessWidget {
                 key: _formkey,
                 child: Column(
                   children: [
-                    TextFormField(
+                    LoginTextField(
                       validator: (value) {
                         if (value != null &&
                             value.isNotEmpty &&
@@ -87,37 +87,25 @@ class LoginPage extends StatelessWidget {
                         return null;
                       },
                       controller: userNamController,
-                      onChanged: (value) {
-                        if (kDebugMode) {
-                          print('value: $value');
-                        }
-                      },
-                      decoration: InputDecoration(
-                          hintText: 'Username',
-                          hintStyle: ThemeTextStyle.loginTextFieldStyle,
-                          border: const OutlineInputBorder()),
+                      hintText: 'Enter Your username',
                     ),
+
+                    // add extra vertical space
                     const SizedBox(
                       height: 0.5,
                     ),
-                    TextFormField(
+
+                    // password text field
+                    LoginTextField(
                       controller: passwordController,
-                      onChanged: (value) {
-                        if (kDebugMode) {
-                          print('value: $value');
-                        }
-                      },
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          hintText: 'Type your password',
-                          hintStyle: ThemeTextStyle.loginTextFieldStyle,
-                          border: OutlineInputBorder()),
+                      hintText: 'Enter password',
+                      hasAsterisks: true,
                     ),
                   ],
                 ),
               ),
 
-              // empty box between Login button and Password field
+              // // add extra vertical space between Login button and Password field
               const SizedBox(
                 height: 0.5,
               ),
