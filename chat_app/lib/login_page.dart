@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/chat_page.dart';
 
@@ -16,16 +15,14 @@ class LoginPage extends StatelessWidget {
     // if currentState is not null then validate currentState
     // ! symbol is necessary, otherwise it assumes that currentState is null
     if (_formkey.currentState != null && _formkey.currentState!.validate()) {
-      Navigator.pushNamed(context, 'chat', arguments: userNamController.text);
 
-      if (kDebugMode) {
-        print(userNamController.text);
-        print('Logged in!');
-      }
+      //TODO: Navigate to ChatPage on successful login
+      print('login successful!');
     } else {
-      print('Login Error!');
+      print('not successful!');
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +95,7 @@ class LoginPage extends StatelessWidget {
                       },
                       obscureText: true,
                       decoration: InputDecoration(
-                          hintText: 'password',
+                          hintText: 'Type your password',
                           hintStyle: TextStyle(color: Colors.blueGrey),
                           border: OutlineInputBorder()),
                     ),
@@ -131,6 +128,8 @@ class LoginPage extends StatelessWidget {
                   }
                 },
                 onTap: () {
+                  //todo: Navigate to browser
+                  print('Link clicked!');
                   if (kDebugMode) {
                     print('Link clicked.');
                   }

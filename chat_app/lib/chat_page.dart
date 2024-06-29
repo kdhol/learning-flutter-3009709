@@ -28,6 +28,9 @@ class ChatPage extends StatelessWidget {
                 if (kDebugMode) {
                   print('help pressed');
                 }
+                //TODO: Navigate back to LoginPage on logout
+
+                print('Icon pressed!');
               },
               icon: const Icon(Icons.help))
         ],
@@ -35,6 +38,7 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
+              //TODO: Create a dynamic sized list
               child: ListView.builder(
             itemCount: 10,
             itemBuilder: (context, index) {
