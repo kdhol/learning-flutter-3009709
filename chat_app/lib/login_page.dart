@@ -21,6 +21,9 @@ class LoginPage extends StatelessWidget {
       // right now it is just to check, what happens if we push
       // empty widget without the material app hello world text
       // after tetsing hello world we will navigate to the real chat_page Route
+      // Here the problem is, there is Back button by default, so on chat page,
+      // if I press back button then I navigate to loginpage, we need solution!
+
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const ChatPage()));
 
@@ -39,7 +42,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,10 +51,10 @@ class LoginPage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 'Let\'s sign you in!',
                 style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 15,
                     color: Colors.brown,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5),
+                    letterSpacing: 0.2),
               ),
 
               const Text(
@@ -59,12 +62,12 @@ class LoginPage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 10,
                     color: Colors.blueGrey),
               ),
               Image.network(
                 'https://3009709.youcanlearnit.net/Alien_LIL_131338.png',
-                height: 200,
+                height: 100,
               ),
 
               Form(
@@ -90,11 +93,12 @@ class LoginPage extends StatelessWidget {
                       },
                       decoration: const InputDecoration(
                           hintText: 'Username',
-                          hintStyle: TextStyle(color: Colors.blueGrey),
+                          hintStyle:
+                              TextStyle(color: Colors.blueGrey, fontSize: 15),
                           border: OutlineInputBorder()),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 0.5,
                     ),
                     TextFormField(
                       controller: passwordController,
@@ -106,30 +110,34 @@ class LoginPage extends StatelessWidget {
                       obscureText: true,
                       decoration: const InputDecoration(
                           hintText: 'Type your password',
-                          hintStyle: TextStyle(color: Colors.blueGrey),
+                          hintStyle:
+                              TextStyle(color: Colors.blueGrey, fontSize: 15),
                           border: OutlineInputBorder()),
                     ),
                   ],
                 ),
               ),
-              //TODO: Add Login Button
+
+              // empty box between Login button and Password field
               const SizedBox(
-                height: 10,
+                height: 0.5,
               ),
+
+              //TODO: Add Login Button
               ElevatedButton(
                   onPressed: () {
                     printLogin(context);
                   },
                   child: const Text(
                     "Login",
-                    style: TextStyle(fontSize: 30),
+                    style: TextStyle(fontSize: 20),
                   )),
 
               //TODO: Add URL Text Button
               GestureDetector(
                 onLongPress: () {
                   if (kDebugMode) {
-                    print('Longpress');
+                    print('Long press');
                   }
                 },
                 onDoubleTap: () {
@@ -139,7 +147,9 @@ class LoginPage extends StatelessWidget {
                 },
                 onTap: () {
                   //todo: Navigate to browser
-                  print('Link clicked!');
+                  if (kDebugMode) {
+                    print('Link clicked!');
+                  }
                   if (kDebugMode) {
                     print('Link clicked.');
                   }

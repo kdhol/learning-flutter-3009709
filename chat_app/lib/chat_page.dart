@@ -29,6 +29,8 @@ class ChatPage extends StatelessWidget {
                   print('help pressed');
                 }
                 //TODO: Navigate back to LoginPage on logout
+                // pop will get back us to the login page
+                Navigator.pop(context);
 
                 if (kDebugMode) {
                   print('Icon pressed!');

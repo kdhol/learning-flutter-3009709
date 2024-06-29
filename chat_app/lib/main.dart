@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/chat_page.dart';
+import 'package:flutter_learn/login_page.dart';
 
 void main() {
   runApp(const ChatApp());
@@ -32,7 +32,7 @@ class ChatApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "My first App",
       theme: myTheme2,
-      home: const ChatPage(),
+      home: LoginPage(),
       //routes: {'chat': (context) => const ChatPage()},
     );
   }

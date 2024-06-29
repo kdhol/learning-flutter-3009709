@@ -15,7 +15,7 @@ class ChatInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 50,
       decoration: const BoxDecoration(
           color: Colors.blueGrey,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
