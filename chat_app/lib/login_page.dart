@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/utils/testfield_styles.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -91,11 +92,10 @@ class LoginPage extends StatelessWidget {
                           print('value: $value');
                         }
                       },
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           hintText: 'Username',
-                          hintStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 15),
-                          border: OutlineInputBorder()),
+                          hintStyle: ThemeTextStyle.loginTextFieldStyle,
+                          border: const OutlineInputBorder()),
                     ),
                     const SizedBox(
                       height: 0.5,
@@ -108,10 +108,9 @@ class LoginPage extends StatelessWidget {
                         }
                       },
                       obscureText: true,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           hintText: 'Type your password',
-                          hintStyle:
-                              TextStyle(color: Colors.blueGrey, fontSize: 15),
+                          hintStyle: ThemeTextStyle.loginTextFieldStyle,
                           border: OutlineInputBorder()),
                     ),
                   ],
