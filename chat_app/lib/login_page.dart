@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/chat_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -16,14 +15,22 @@ class LoginPage extends StatelessWidget {
     // if currentState is not null then validate currentState
     // ! symbol is necessary, otherwise it assumes that currentState is null
     if (_formkey.currentState != null && _formkey.currentState!.validate()) {
+      //TODO: 04_12_b Navigate to ChatPage on successful login
+      // we will use here Navigator imperative API for Pop and Push
+      // right now it is just to check, what happens if we push
+      // empty widget without the material app hello world text
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const Text("Hello World!")));
 
-      //TODO: Navigate to ChatPage on successful login
-      print('login successful!');
+      if (kDebugMode) {
+        print('login successful!');
+      }
     } else {
-      print('not successful!');
+      if (kDebugMode) {
+        print('not successful!');
+      }
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +102,7 @@ class LoginPage extends StatelessWidget {
                         }
                       },
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           hintText: 'Type your password',
                           hintStyle: TextStyle(color: Colors.blueGrey),
                           border: OutlineInputBorder()),
