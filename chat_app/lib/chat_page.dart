@@ -4,14 +4,16 @@ import 'package:flutter_learn/widgets/chat_bubble.dart';
 import 'package:flutter_learn/widgets/chat_input.dart';
 
 class ChatPage extends StatelessWidget {
-  final String username;
-
-  const ChatPage({super.key, required this.username});
+  const ChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     // get the arguments of LoginPage
-    // final username = ModalRoute.of(context)!.settings.arguments as String;
+    // 2 - we dont need username in construction any more.
+    // ModalRoute returns current route with arguments
+    // if ModalRoute.of(context) is null then setting can not be applied,
+    // therefore ! is added, as loginpage is not null
+    final username = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
       appBar: AppBar(

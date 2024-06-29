@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/chat_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -22,13 +21,10 @@ class LoginPage extends StatelessWidget {
       // empty widget without the material app hello world text
       // after tetsing hello world we will navigate to the real chat_page Route
       // Here the problem is, there is Back button by default, so on chat page,
-      // if I press back button then I navigate to loginpage, we need solution!
-
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  ChatPage(username: userNamController.text)));
+      // if I press back button then I navigate to login page, we need solution!
+      // navigator.push() is not scalable, as hardcoded Classname requires.
+      // by using pushNamed, we can just enter the context lle '/chat', define that named context in main.
+      Navigator.pushNamed(context, '/chat', arguments: userNamController.text);
 
       if (kDebugMode) {
         print('login successful!');
