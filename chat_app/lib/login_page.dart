@@ -25,7 +25,10 @@ class LoginPage extends StatelessWidget {
       // if I press back button then I navigate to loginpage, we need solution!
 
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const ChatPage()));
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ChatPage(username: userNamController.text)));
 
       if (kDebugMode) {
         print('login successful!');

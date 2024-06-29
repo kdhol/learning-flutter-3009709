@@ -4,7 +4,9 @@ import 'package:flutter_learn/widgets/chat_bubble.dart';
 import 'package:flutter_learn/widgets/chat_input.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key});
+  final String username;
+
+  const ChatPage({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,8 @@ class ChatPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hi Kishan'),
+        // TODO: Remove Hard coded Name here
+        title: Text('Hi $username'),
         actions: [
           IconButton(
               onPressed: () {
