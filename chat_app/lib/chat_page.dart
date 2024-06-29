@@ -22,7 +22,10 @@ class ChatPage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.pop(context); // go to previous Rout?
+                //TODO: Navigate back to LoginPage on logout
+                // pop will get back us to the login page
+                Navigator.pushReplacementNamed(context, '/');
+
                 if (kDebugMode) {
                   print('Logout pressed');
                 }
@@ -33,10 +36,6 @@ class ChatPage extends StatelessWidget {
                 if (kDebugMode) {
                   print('help pressed');
                 }
-                //TODO: Navigate back to LoginPage on logout
-                // pop will get back us to the login page
-                Navigator.pop(context);
-
                 if (kDebugMode) {
                   print('Icon pressed!');
                 }

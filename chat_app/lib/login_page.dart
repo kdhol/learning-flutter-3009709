@@ -24,7 +24,8 @@ class LoginPage extends StatelessWidget {
       // if I press back button then I navigate to login page, we need solution!
       // navigator.push() is not scalable, as hardcoded Classname requires.
       // by using pushNamed, we can just enter the context lle '/chat', define that named context in main.
-      Navigator.pushNamed(context, '/chat', arguments: userNamController.text);
+      Navigator.pushReplacementNamed(context, '/chat',
+          arguments: userNamController.text);
 
       if (kDebugMode) {
         print('login successful!');
