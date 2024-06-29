@@ -24,6 +24,7 @@ class ChatPage extends StatelessWidget {
               onPressed: () {
                 //TODO: Navigate back to LoginPage on logout
                 // pop will get back us to the login page
+                // '/' means homepage of app
                 Navigator.pushReplacementNamed(context, '/');
 
                 if (kDebugMode) {
