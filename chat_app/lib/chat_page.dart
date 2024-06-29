@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/widgets/chat_bubble.dart';
-import 'package:flutter_learn/widgets/chat_input.dart'; // custom class
+import 'package:flutter_learn/widgets/chat_input.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
@@ -9,11 +9,11 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // get the arguments of LoginPage
-    final username = ModalRoute.of(context)!.settings.arguments as String;
+    // final username = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hi $username'),
+        title: const Text('Hi Kishan'),
         actions: [
           IconButton(
               onPressed: () {
@@ -30,7 +30,9 @@ class ChatPage extends StatelessWidget {
                 }
                 //TODO: Navigate back to LoginPage on logout
 
-                print('Icon pressed!');
+                if (kDebugMode) {
+                  print('Icon pressed!');
+                }
               },
               icon: const Icon(Icons.help))
         ],
@@ -40,15 +42,14 @@ class ChatPage extends StatelessWidget {
           Expanded(
               //TODO: Create a dynamic sized list
               child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return ChatBubble(
-                  alignment: index % 2 == 0
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
-                  message: "Hi");
-            },
-          )),
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return ChatBubble(
+                        alignment: index % 2 == 0
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        message: "Hi");
+                  })),
           ChatInput()
         ],
       ),

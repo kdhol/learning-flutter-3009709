@@ -21,7 +21,7 @@ class ChatInput extends StatelessWidget {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         IconButton(
-            onPressed: () {}, icon: Icon(Icons.add, color: Colors.white)),
+            onPressed: () {}, icon: const Icon(Icons.add, color: Colors.white)),
         Expanded(
             child: TextField(
           keyboardType: TextInputType.multiline,

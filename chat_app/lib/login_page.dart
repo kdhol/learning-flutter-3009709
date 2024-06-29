@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/chat_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -19,8 +20,9 @@ class LoginPage extends StatelessWidget {
       // we will use here Navigator imperative API for Pop and Push
       // right now it is just to check, what happens if we push
       // empty widget without the material app hello world text
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const Text("Hello World!")));
+      // after tetsing hello world we will navigate to the real chat_page Route
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const ChatPage()));
 
       if (kDebugMode) {
         print('login successful!');

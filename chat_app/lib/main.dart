@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/chat_page.dart';
-import 'package:flutter_learn/login_page.dart';
-import 'package:flutter_learn/login_page_2.dart';
-import 'package:flutter_learn/widgets/demo/counter_stateful_demo.dart';
 
 void main() {
   runApp(const ChatApp());
@@ -35,9 +32,8 @@ class ChatApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "My first App",
       theme: myTheme2,
-      home: LoginPage(),
-      // CounterStateful(buttonColor: Colors.blue)
-      routes: {'chat': (context) => const ChatPage()},
+      home: const ChatPage(),
+      //routes: {'chat': (context) => const ChatPage()},
     );
   }
 }
