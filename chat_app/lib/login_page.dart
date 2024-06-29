@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/utils/spaces.dart';
 import 'package:flutter_learn/widgets/login_text_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -91,9 +92,7 @@ class LoginPage extends StatelessWidget {
                     ),
 
                     // add extra vertical space
-                    const SizedBox(
-                      height: 0.5,
-                    ),
+                    verticalSpacing(1),
 
                     // password text field
                     LoginTextField(
@@ -106,9 +105,7 @@ class LoginPage extends StatelessWidget {
               ),
 
               // // add extra vertical space between Login button and Password field
-              const SizedBox(
-                height: 0.5,
-              ),
+              verticalSpacing(1),
 
               //TODO: Add Login Button
               ElevatedButton(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/login_page.dart';
+import 'package:flutter_learn/utils/brand_color.dart';
 
 import 'chat_page.dart';
 
@@ -20,8 +21,8 @@ final ThemeData myTheme = ThemeData(
 final ThemeData myTheme2 = ThemeData(
     colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple),
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.deepPurple, foregroundColor: Colors.white)
+    appBarTheme: AppBarTheme(
+        backgroundColor: BrandColor.primaryColor, foregroundColor: Colors.white)
     // Set primary color scheme
     );
 
