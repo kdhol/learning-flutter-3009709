@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_learn/models/image_model.dart';
 import 'package:flutter_learn/widgets/chat_bubble.dart';
 import 'package:flutter_learn/widgets/chat_input.dart';
+import 'package:http/http.dart' as http;
 
 import 'models/chat_message_entity.dart';
 
@@ -50,9 +52,28 @@ class _ChatPageState extends State<ChatPage> {
     setState(() {});
   }
 
+  // TODO : get http request and show image library
+  _getNetworkImages() async {
+    var endPointUrl = Uri.parse('https://pixelford.com/api2/images');
+    final response = await http.get(endPointUrl);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> decodedList = jsonDecode(response.body) as List;
+
+      final List<PixelfordImage> imageList = decodedList.map((listItem) {
+        return PixelfordImage.fromJson(listItem);
+      }).toList();
+
+      if (kDebugMode) {
+        print(imageList[0].urlFullSize);
+      }
+    }
+  }
+
   @override
   void initState() {
     _loadInitialMessages();
+    _getNetworkImages();
     super.initState();
   }
 
@@ -62,7 +83,6 @@ class _ChatPageState extends State<ChatPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text('Hi $username!'),
         actions: [
