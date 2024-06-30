@@ -1,5 +1,5 @@
-import 'package:chat_app/utils/brand_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/utils/brand_color.dart';
 
 import 'chat_page.dart';
 import 'login_page.dart';
@@ -36,7 +36,7 @@ class ChatApp extends StatelessWidget {
       title: "My first App",
       theme: myTheme2,
       home: LoginPage(),
-      routes: {'/chat': (context) => ChatPage()},
+      routes: {'/chat': (context) => const ChatPage()},
     );
   }
 }

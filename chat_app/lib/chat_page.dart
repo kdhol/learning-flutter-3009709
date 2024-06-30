@@ -1,110 +1,91 @@
 import 'dart:convert';
 
-import 'package:chat_app/widgets/chat_bubble.dart';
-import 'package:chat_app/widgets/chat_input.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_learn/widgets/chat_bubble.dart';
+import 'package:flutter_learn/widgets/chat_input.dart';
 
 import 'models/chat_message_entity.dart';
 
 class ChatPage extends StatefulWidget {
-  ChatPage({super.key});
+  const ChatPage({super.key});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
 
 class _ChatPageState extends State<ChatPage> {
-  // initial state of messages
+  //initiate state of messages
   List<ChatMessageEntity> _messages = [];
 
-  // load the json file
   _loadInitialMessages() async {
-    // get response back from json
     final response = await rootBundle.loadString('assets/mock_messages.json');
 
-    // decode the response
-    // jsonDecode is a dynmaic list, so make sure with type hint as list
-    final List<dynamic> decodeList = jsonDecode(response) as List;
+    final List<dynamic> decodedList = jsonDecode(response) as List;
 
-    // we need now a ListChatMessageEntity which takes response as input and returns List
-    //  decodeList.map iterates over all items in list and create a single map
-    final List<ChatMessageEntity> _chatMessages = decodeList.map((listItem) {
+    final List<ChatMessageEntity> chatMessages = decodedList.map((listItem) {
       return ChatMessageEntity.fromJson(listItem);
     }).toList();
 
-    // final state of messages
+    if (kDebugMode) {
+      print(chatMessages.length);
+    }
+
+    //final state of the messages
     setState(() {
-      _messages = _chatMessages;
+      _messages = chatMessages;
     });
+  }
+
+  // on send msg btn press, add new message in message list and set new state
+  onMessageSent(ChatMessageEntity entity) {
+    _messages.add(entity);
+    setState(() {});
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     _loadInitialMessages();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    _loadInitialMessages();
-
-    // get the arguments of LoginPage
-    // 2 - we don't need username in construction any more.
-    // ModalRoute returns current route with arguments
-    // if ModalRoute.of(context) is null then setting can not be applied,
-    // therefore ! is added, as login page is not null
     final username = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
       appBar: AppBar(
-        // TODO: Remove Hard coded Name here
-        title: Text('Hi $username'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text('Hi $username!'),
         actions: [
           IconButton(
               onPressed: () {
-                //TODO: Navigate back to LoginPage on logout
-                // pop will get back us to the login page
-                // '/' means homepage of app
                 Navigator.pushReplacementNamed(context, '/');
-
-                if (kDebugMode) {
-                  print('Logout pressed');
-                }
-              },
-              icon: const Icon(Icons.logout_sharp)),
-          IconButton(
-              onPressed: () {
-                if (kDebugMode) {
-                  print('help pressed');
-                }
                 if (kDebugMode) {
                   print('Icon pressed!');
                 }
               },
-              icon: const Icon(Icons.help))
+              icon: const Icon(Icons.logout))
         ],
       ),
       body: Column(
         children: [
           Expanded(
-              //
-              //TODO: Create a dynamic sized list
-              //
               child: ListView.builder(
                   itemCount: _messages.length,
                   itemBuilder: (context, index) {
-                    // chatBubble will be created
                     return ChatBubble(
-                      alignment: index % 2 == 0
-                          ? Alignment.centerRight
-                          : Alignment.centerLeft,
-                      entity: _messages[index],
-                    );
+                        alignment:
+                            _messages[index].author.userName == 'poojab26'
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                        entity: _messages[index]);
                   })),
-          ChatInput()
+          ChatInput(
+            onSubmit: onMessageSent,
+          ),
         ],
       ),
     );
