@@ -20,22 +20,28 @@ class _ChatPageState extends State<ChatPage> {
   List<ChatMessageEntity> _messages = [];
 
   _loadInitialMessages() async {
-    final response = await rootBundle.loadString('assets/mock_messages.json');
+    // loadString returns Future object.
+    // so we need await or a .then method, we can also nest then
+    // Now user should not wait for long async function
+    rootBundle.loadString('assets/mock_messages.json').then((response) {
+      final List<dynamic> decodedList = jsonDecode(response) as List;
 
-    final List<dynamic> decodedList = jsonDecode(response) as List;
+      final List<ChatMessageEntity> chatMessages = decodedList.map((listItem) {
+        return ChatMessageEntity.fromJson(listItem);
+      }).toList();
 
-    final List<ChatMessageEntity> chatMessages = decodedList.map((listItem) {
-      return ChatMessageEntity.fromJson(listItem);
-    }).toList();
+      if (kDebugMode) {
+        print(chatMessages.length);
+      }
 
-    if (kDebugMode) {
-      print(chatMessages.length);
-    }
-
-    //final state of the messages
-    setState(() {
-      _messages = chatMessages;
+      //final state of the messages
+      setState(() {
+        _messages = chatMessages;
+      });
     });
+
+    // Then Do something
+    // This section will not wait for previous Asyn operation
   }
 
   // on send msg btn press, add new message in message list and set new state
