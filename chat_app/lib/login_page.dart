@@ -1,7 +1,7 @@
+import 'package:chat_app/utils/spaces.dart';
+import 'package:chat_app/widgets/login_text_field.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/utils/spaces.dart';
-import 'package:flutter_learn/widgets/login_text_field.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

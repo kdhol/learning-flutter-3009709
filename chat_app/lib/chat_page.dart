@@ -1,40 +1,61 @@
+import 'dart:convert';
+
+import 'package:chat_app/widgets/chat_bubble.dart';
+import 'package:chat_app/widgets/chat_input.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/models/chat_message_entity.dart';
-import 'package:flutter_learn/widgets/chat_bubble.dart';
-import 'package:flutter_learn/widgets/chat_input.dart';
+import 'package:flutter/services.dart';
 
-class ChatPage extends StatelessWidget {
+import 'models/chat_message_entity.dart';
+
+class ChatPage extends StatefulWidget {
   ChatPage({super.key});
 
-  final List<ChatMessageEntity> _messages = [
-    ChatMessageEntity(
-      text: 'I am kishan',
-      id: '123',
-      author: Author(userName: 'Kd'),
-      createdAt: DateTime.now().millisecond,
-    ),
-    ChatMessageEntity(
-      text: 'I am kishan',
-      id: '123',
-      author: Author(userName: 'Kd2'),
-      createdAt: DateTime.now().millisecond,
-    ),
-    ChatMessageEntity(
-      text: 'I am kishan',
-      id: '123',
-      author: Author(userName: 'Kd3'),
-      createdAt: DateTime.now().millisecond,
-    ),
-  ];
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  // initial state of messages
+  List<ChatMessageEntity> _messages = [];
+
+  // load the json file
+  _loadInitialMessages() async {
+    // get response back from json
+    final response = await rootBundle.loadString('assets/mock_messages.json');
+
+    // decode the response
+    // jsonDecode is a dynmaic list, so make sure with type hint as list
+    final List<dynamic> decodeList = jsonDecode(response) as List;
+
+    // we need now a ListChatMessageEntity which takes response as input and returns List
+    //  decodeList.map iterates over all items in list and create a single map
+    final List<ChatMessageEntity> _chatMessages = decodeList.map((listItem) {
+      return ChatMessageEntity.fromJson(listItem);
+    }).toList();
+
+    // final state of messages
+    setState(() {
+      _messages = _chatMessages;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _loadInitialMessages();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    _loadInitialMessages();
+
     // get the arguments of LoginPage
-    // 2 - we dont need username in construction any more.
+    // 2 - we don't need username in construction any more.
     // ModalRoute returns current route with arguments
     // if ModalRoute.of(context) is null then setting can not be applied,
-    // therefore ! is added, as loginpage is not null
+    // therefore ! is added, as login page is not null
     final username = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/models/chat_message_entity.dart';
+
+import '../models/chat_message_entity.dart';
 
 class ChatBubble extends StatelessWidget {
   final ChatMessageEntity entity;
