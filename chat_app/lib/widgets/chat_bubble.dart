@@ -13,6 +13,11 @@ class ChatBubble extends StatelessWidget {
     return Align(
       alignment: alignment,
       child: Container(
+        //
+        // TODO: What is MediaQuery?
+        // width: MediaQuery.of(context).size.width * 0.5,
+        constraints:
+            BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.5),
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.all(40),
         decoration: const BoxDecoration(
@@ -29,7 +34,7 @@ class ChatBubble extends StatelessWidget {
               style: const TextStyle(fontSize: 20, color: Colors.white),
             ),
 
-            // render image
+            // render image if is not null
             if (entity.imageUrl != null)
               // if image is given, then only render it
               Image.network(
