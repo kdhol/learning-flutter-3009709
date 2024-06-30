@@ -5,7 +5,28 @@ import 'package:flutter_learn/widgets/chat_bubble.dart';
 import 'package:flutter_learn/widgets/chat_input.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key});
+  ChatPage({super.key});
+
+  final List<ChatMessageEntity> _messages = [
+    ChatMessageEntity(
+      text: 'I am kishan',
+      id: '123',
+      author: Author(userName: 'Kd'),
+      createdAt: DateTime.now().millisecond,
+    ),
+    ChatMessageEntity(
+      text: 'I am kishan',
+      id: '123',
+      author: Author(userName: 'Kd2'),
+      createdAt: DateTime.now().millisecond,
+    ),
+    ChatMessageEntity(
+      text: 'I am kishan',
+      id: '123',
+      author: Author(userName: 'Kd3'),
+      createdAt: DateTime.now().millisecond,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +69,18 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
+              //
               //TODO: Create a dynamic sized list
+              //
               child: ListView.builder(
-                  itemCount: 10,
+                  itemCount: _messages.length,
                   itemBuilder: (context, index) {
                     // chatBubble will be created
                     return ChatBubble(
                       alignment: index % 2 == 0
                           ? Alignment.centerRight
                           : Alignment.centerLeft,
-                      entity: ChatMessageEntity(
-                        text: 'I am kishan',
-                        id: '123',
-                        author: Author(userName: 'Kd'),
-                        createdAt: DateTime.now().millisecond,
-                      ),
+                      entity: _messages[index],
                     );
                   })),
           ChatInput()
