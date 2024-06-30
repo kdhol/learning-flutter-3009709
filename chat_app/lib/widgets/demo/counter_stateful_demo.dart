@@ -31,14 +31,14 @@ class _CounterStatefulState extends State<CounterStateful> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           backgroundColor: widget.buttonColor,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
             increment();
           }),
       body: Center(
         child: Text(
           '$counter',
-          style: TextStyle(fontSize: 40),
+          style: const TextStyle(fontSize: 40),
         ),
       ),
     );
