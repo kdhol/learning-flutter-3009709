@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/models/chat_message_entity.dart';
 import 'package:flutter_learn/widgets/chat_bubble.dart';
 import 'package:flutter_learn/widgets/chat_input.dart';
 
@@ -51,11 +52,18 @@ class ChatPage extends StatelessWidget {
               child: ListView.builder(
                   itemCount: 10,
                   itemBuilder: (context, index) {
+                    // chatBubble will be created
                     return ChatBubble(
-                        alignment: index % 2 == 0
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                        message: "Hi");
+                      alignment: index % 2 == 0
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                      entity: ChatMessageEntity(
+                        text: 'I am kishan',
+                        id: '123',
+                        author: Author(userName: 'Kd'),
+                        createdAt: DateTime.now().millisecond,
+                      ),
+                    );
                   })),
           ChatInput()
         ],
